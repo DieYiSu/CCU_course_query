@@ -26,8 +26,7 @@
                 <img class="img-fluid beta" src="./source/Logo/beta_1355273_AHd_icon.ico" alt="">
             </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -66,37 +65,21 @@
         <!-- main container -->
         <div class="container-fluid main">
             <div class="row">
-                <div v-for="course_element in new_course_dict" class="col-3 mb-3">
-                    <div class="card h-100">
-                        <div class="card-header text-black">{{course_element.College}} {{course_element.Department}}
-                            {{course_element.年級}} 年級</div>
-                        <div class="card-body">
-                            <h6 class="card-title">{{course_element.科目名稱}}</h6>
-                            <a href="#" class="btn btn-outline-primary" data-toggle="modal"
-                                data-target="#exampleModal">Detail</a>
-                        </div>
-                    </div>
-                </div>
+                <course-card v-for="(course_element, key) in new_course_dict" :card_info="course_element" :key="key" @emit_detail="reveice_course_detail"></course-card>
             </div>
         </div>
 
+        
 
         <!-- detail Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" @="reveice_course_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">華語文教學導論Introduction to Teaching Chinese as a
-                            Foreign
-                            Language</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">{{main_course_detail.科目名稱}}</h5>
                     </div>
                     <div class="modal-body">
-
-                        <table class="table table-sm table-hover mt-2">
+                        <table class="table table-sm mt-2">
                             <thead>
                                 <tr>
                                     <th class="col-6" scope="col">#</th>
@@ -106,95 +89,103 @@
                             <tbody>
                                 <tr scope="row">
                                     <th class="col-6">Year Standing</th>
-                                    <td class="col-6">1</td>
+                                    <td class="col-6">{{main_course_detail.年級}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Course ID</th>
-                                    <td class="col-6">1011101</td>
+                                    <td class="col-6">{{main_course_detail.編號}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Class</th>
-                                    <td class="col-6" colspan="2">01</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.班別}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Instructor</th>
-                                    <td class="col-6" colspan="2">黃惠華</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.任課教授}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Hours per week
                                         Regular/Experiments/Discussions</th>
-                                    <td class="col-6" colspan="2">2
-                                        2/0/0</td>
+                                    <td class="col-6" colspan="2">Null</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Credit</th>
-                                    <td class="col-6" colspan="2">2</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.學分}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Credit type</th>
-                                    <td class="col-6" colspan="2">必修</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.選必}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Day/Period</th>
-                                    <td class="col-6" colspan="2">二4,5</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.上課時間}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Classroom</th>
-                                    <td class="col-6" colspan="2">文學院148</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.上課地點}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Student Limit</th>
-                                    <td class="col-6" colspan="2">35</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.限修人數}}</td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Syllabus</th>
-                                    <td class="col-6" colspan="2">,Included in Program in Teaching Chinese as aSecond
-                                        Language</td>
+                                    <td class="col-6" colspan="2" >
+                                        <a :href="main_course_detail.課程大綱" target="_blank">Link</a>
+                                    </td>
                                 </tr>
                                 <tr scope="row">
                                     <th class="col-6">Remarks</th>
-                                    <td class="col-6" colspan="2">,Included in Program in Teaching Chinese as aSecond
-                                        Language</td>
+                                    <td class="col-6" colspan="2">{{main_course_detail.備註}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="#" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#pdf_modal">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- pdf Modal -->
+        <!-- <div class="modal fade" id="pdf_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="example1"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
-                        <a href="#" class="btn btn-outline-primary" data-toggle="modal"
-                            data-target="#pdf_modal">Detail</a>
                     </div>
-
                 </div>
             </div>
         </div> -->
-
-        <!-- pdf Modal -->
-        <!-- <div class="modal fade" id="pdf_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="example1"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
     </div>
 
 
+    <script type="text/x-template" id="courseCardTemplate">
+        <div class="col-6 col-sm-3 mb-3">
+            <div class="card h-100">
+                <div class="card-header" :class="color">{{card_info.College}} {{card_info.Department}} {{card_info.年級}} 年級</div>
+                <div class="card-body">
+                    <h6 class="card-title">{{card_info.科目名稱}}</h6>
+                    <p class="card-text">{{card_info.任課教授}} {{card_info.學分}} {{card_info.選必}}</p>
+                    <a href="#" @click="detail(card_info)" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Detail</a>
+                </div>
+            </div>
+        </div>
+    </script>
 
 
     <!-- bootstrap js -->

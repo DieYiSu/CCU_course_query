@@ -1,0 +1,81 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{course_detail.科目名稱}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm table-hover mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-6" scope="col">#</th>
+                                            <th class="col-6" scope="col">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr scope="row">
+                                            <th class="col-6">Year Standing</th>
+                                            <td class="col-6">1</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Course ID</th>
+                                            <td class="col-6">1011101</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Class</th>
+                                            <td class="col-6" colspan="2">01</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Instructor</th>
+                                            <td class="col-6" colspan="2">黃惠華</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Hours per week
+                                                Regular/Experiments/Discussions</th>
+                                            <td class="col-6" colspan="2">2
+                                                2/0/0</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Credit</th>
+                                            <td class="col-6" colspan="2">2</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Credit type</th>
+                                            <td class="col-6" colspan="2">必修</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Day/Period</th>
+                                            <td class="col-6" colspan="2">二4,5</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Classroom</th>
+                                            <td class="col-6" colspan="2">文學院148</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Student Limit</th>
+                                            <td class="col-6" colspan="2">35</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Syllabus</th>
+                                            <td class="col-6" colspan="2">,Included in Program in Teaching Chinese as aSecond
+                                                Language</td>
+                                        </tr>
+                                        <tr scope="row">
+                                            <th class="col-6">Remarks</th>
+                                            <td class="col-6" colspan="2">,Included in Program in Teaching Chinese as aSecond
+                                                Language</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="#" class="btn btn-outline-primary" data-toggle="modal"
+                                    data-target="#pdf_modal">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
